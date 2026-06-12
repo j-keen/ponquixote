@@ -69,6 +69,13 @@ const pages = sections
   }))
   .filter((p) => p.group !== '화이트보드 기획')   // 화이트보드 프롬프트 제외 — 대본만
   .map((p, i) => ({ id: 'p' + i, ...p }));
+
+// 강의 대본 위에 실제 화이트보드 판서 사진 첨부
+const boardImg = { 'A-1': 'img/a1.png', 'A-2': 'img/a2.png', 'A-3': 'img/a3.png' };
+pages.forEach((p) => {
+  const m = p.label.match(/^(A-\d)/);
+  if (m && boardImg[m[1]]) p.img = boardImg[m[1]];
+});
 // 공유용 홈: 내부 작업메모(작업 노트/공통 주의)는 제외하고 깔끔한 인트로만
 const homeMd = [
   '# 폰키호테 방학점 — 촬영 대본',
@@ -133,6 +140,9 @@ blockquote p{margin:.25em 0;}
 .nav-bottom button:hover{border-color:#1b1d22;}
 .nav-bottom button:disabled{opacity:.35;cursor:default;}
 .foot{text-align:center;color:#a7a89f;font-size:12px;margin-top:34px;}
+.board{margin:0 0 22px;}
+.board img{width:100%;border:1px solid #d8d6cc;border-radius:10px;display:block;}
+.board figcaption{font-size:12.5px;color:#8a8e96;margin-top:7px;text-align:center;}
 </style>
 </head>
 <body>
@@ -165,7 +175,13 @@ function renderHome(){
 }
 function renderPage(i){
   var p = D.pages[i];
-  var html = md2html(p.md);
+  var html = '';
+  if(p.img){
+    html += '<figure class="board"><a href="'+p.img+'" target="_blank" rel="noopener">'
+         +  '<img src="'+p.img+'" alt="화이트보드 판서" loading="lazy"></a>'
+         +  '<figcaption>📋 실제 화이트보드 판서 (탭하면 확대)</figcaption></figure>';
+  }
+  html += md2html(p.md);
   html += '<div class="nav-bottom">';
   html += '<button onclick="go('+(i-1)+')" '+(i<=0?'disabled':'')+'>‹ 이전</button>';
   html += '<button onclick="home()">목차</button>';
