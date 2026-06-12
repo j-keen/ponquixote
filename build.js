@@ -1,5 +1,20 @@
 const fs = require('fs');
-const md = fs.readFileSync(process.argv[2], 'utf8');
+let md = fs.readFileSync(process.argv[2], 'utf8');
+
+// --- 웹 표시용 정리: YAML 프론트매터 제거 + 옵시디언 콜아웃 변환 ---
+function clean(s) {
+  s = s.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, ''); // 프론트매터 제거
+  const emoji = { note:'📝', warning:'⚠️', tip:'💡', summary:'📌', example:'📄',
+                  quote:'❝', faq:'❓', todo:'✅', question:'❔' };
+  s = s.replace(/^>\s*\[!(\w+)\][+-]?\s*(.*)$/gm, (m, type, title) => {
+    const e = emoji[type.toLowerCase()] || '';
+    const label = (title || '').trim() || type;
+    return '> **' + (e ? e + ' ' : '') + label + '**';
+  });
+  return s;
+}
+md = clean(md);
+
 const lines = md.split('\n');
 
 const home = [];
