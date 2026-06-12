@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>폰키호테 방학점 — 촬영 대본</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#F7F6F1;
+  --ink:#1B1D22;
+  --red:#D9342B;
+  --blue:#2557C9;
+  --gray:#8A8E96;
+  --line:#E4E2D8;
+  --card:#FFFFFF;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Noto Sans KR',sans-serif;color:var(--ink);
+  background:var(--board);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:28px 28px;
+  min-height:100vh;
+}
+.wrap{max-width:560px;margin:0 auto;padding:28px 18px 80px}
+.pen{font-family:'Nanum Pen Script',cursive}
+
+/* ---------- 홈 (링크트리) ---------- */
+.profile{text-align:center;margin-bottom:30px}
+.logo{
+  width:84px;height:84px;border-radius:50%;background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+  font-family:'Nanum Pen Script',cursive;font-size:44px;line-height:1;
+  border:3px solid var(--ink);box-shadow:4px 4px 0 rgba(27,29,34,.18);
+}
+.profile h1{font-size:24px;font-weight:900;letter-spacing:-.5px}
+.profile h1 .pen{color:var(--red);font-size:30px;font-weight:400;margin-left:4px}
+.profile p{color:var(--gray);font-size:13.5px;margin-top:6px;line-height:1.6}
+.notice{
+  background:#FFF9DB;border:1.5px dashed #E5C84B;border-radius:var(--radius);
+  padding:12px 14px;font-size:12.5px;line-height:1.65;color:#6b5d1d;margin-bottom:26px;
+}
+.group-label{
+  display:flex;align-items:center;gap:10px;margin:26px 2px 12px;
+  font-size:13px;font-weight:700;color:var(--gray);letter-spacing:.04em;
+}
+.group-label .swatch{width:22px;height:8px;border-radius:4px}
+.links{display:flex;flex-direction:column;gap:12px}
+.linkcard{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);
+  padding:15px 16px;cursor:pointer;font-family:inherit;color:var(--ink);
+  box-shadow:4px 4px 0 rgba(27,29,34,.14);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.linkcard:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(27,29,34,.16)}
+.linkcard:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(27,29,34,.16)}
+.linkcard:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.linkcard .stripe{width:6px;align-self:stretch;border-radius:4px;flex:none}
+.linkcard .body{flex:1;min-width:0}
+.linkcard .ep{font-size:11px;font-weight:700;color:var(--gray);letter-spacing:.06em}
+.linkcard .t{font-size:16px;font-weight:700;line-height:1.4;margin-top:2px;word-break:keep-all}
+.linkcard .meta{font-size:12px;color:var(--gray);margin-top:4px}
+.linkcard .edited{color:var(--red);font-weight:700}
+.linkcard .arrow{font-family:'Nanum Pen Script',cursive;font-size:26px;color:var(--gray);flex:none}
+
+/* ---------- 대본 화면 ---------- */
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.backbtn{
+  background:var(--card);border:2px solid var(--ink);border-radius:10px;
+  padding:7px 13px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;
+  box-shadow:3px 3px 0 rgba(27,29,34,.14);color:var(--ink);
+}
+.backbtn:active{transform:translate(2px,2px);box-shadow:0 0 0}
+.savestate{margin-left:auto;font-size:12px;color:var(--gray)}
+.savestate.on{color:#2c8a4b;font-weight:700}
+.script-head .ep{font-size:12px;font-weight:700;letter-spacing:.06em}
+.script-head h2{font-size:22px;font-weight:900;line-height:1.35;margin-top:4px;word-break:keep-all}
+.script-head .dur{font-size:12.5px;color:var(--gray);margin-top:5px}
+.tone{
+  background:var(--card);border-left:5px solid var(--ink);border-radius:0 10px 10px 0;
+  padding:11px 14px;font-size:13px;line-height:1.7;color:#444;margin:14px 0 24px;
+}
+.tone b{color:var(--ink)}
+
+.block{
+  background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);
+  padding:18px 16px 14px;margin-bottom:18px;position:relative;
+  box-shadow:4px 4px 0 rgba(27,29,34,.10);
+}
+.block .tag{
+  position:absolute;top:-11px;left:14px;background:var(--ink);color:#fff;
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em;
+}
+.field-label{font-size:11px;font-weight:700;color:var(--gray);letter-spacing:.05em;margin:10px 0 5px}
+.q-input{
+  width:100%;font-family:inherit;font-size:15.5px;font-weight:700;
+  border:none;border-bottom:2px dashed var(--line);background:transparent;
+  padding:4px 2px 7px;line-height:1.5;resize:none;overflow:hidden;word-break:keep-all;
+}
+.q-input:focus{outline:none;border-bottom-color:currentColor}
+.a-input{
+  width:100%;font-family:inherit;font-size:14.5px;line-height:1.75;color:#2a2c31;
+  border:1.5px solid var(--line);border-radius:10px;background:#FCFBF7;
+  padding:11px 12px;resize:none;overflow:hidden;min-height:72px;
+}
+.a-input:focus{outline:none;border-color:var(--gray)}
+.a-input::placeholder{color:#b9bcc2}
+.guide{
+  margin-top:10px;font-size:12.5px;line-height:1.7;color:#7a6a28;
+  background:#FFFBE8;border-radius:8px;padding:9px 11px;
+}
+.guide::before{content:"🖊 가이드 — ";font-weight:700}
+.del-block{
+  position:absolute;top:10px;right:12px;border:none;background:none;cursor:pointer;
+  color:var(--gray);font-size:12.5px;font-weight:700;font-family:inherit;
+}
+.del-block:hover{color:var(--red)}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{
+  flex:1;min-width:130px;border:2px solid var(--ink);border-radius:12px;padding:12px 10px;
+  font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;color:var(--ink);
+  background:var(--card);box-shadow:3px 3px 0 rgba(27,29,34,.14);
+}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0}
+.btn.primary{background:var(--ink);color:#fff}
+.addblock{
+  width:100%;margin-top:2px;border:2px dashed var(--gray);background:transparent;
+  border-radius:var(--radius);padding:13px;font-family:inherit;font-size:14px;
+  font-weight:700;color:var(--gray);cursor:pointer;
+}
+.addblock:hover{color:var(--ink);border-color:var(--ink)}
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:#fff;font-size:13.5px;font-weight:700;
+  padding:11px 20px;border-radius:30px;opacity:0;transition:all .25s ease;z-index:50;
+  pointer-events:none;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+footer{margin-top:46px;text-align:center;font-size:12px;color:var(--gray);line-height:1.8}
+footer .pen{font-size:20px;color:var(--ink)}
+.hidden{display:none}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ 홈 ============ -->
+  <div id="view-home">
+    <div class="profile">
+      <div class="logo">폰Q</div>
+      <h1>폰키호테 방학점<span class="pen">촬영대본</span></h1>
+      <p>사장님, 아래 대본은 전부 <b>초안(샘플)</b>입니다.<br>눌러서 읽어보시고, 사장님 말투로 직접 고쳐주세요.</p>
+    </div>
+    <div class="notice">
+      ✍️ 모든 칸은 <b>터치하면 바로 수정</b>되고 이 휴대폰(브라우저)에 자동 저장됩니다. 질문 자체를 바꾸셔도 되고, 블록을 추가·삭제하셔도 됩니다. 다 고치신 뒤 화면 아래 <b>"전체 복사"</b>를 눌러 카톡으로 보내주세요.
+    </div>
+
+    <div class="group-label"><span class="swatch" style="background:var(--red)"></span>화이트보드 강의형 · 빨간 마커</div>
+    <div class="links" id="links-lecture"></div>
+
+    <div class="group-label"><span class="swatch" style="background:var(--blue)"></span>인터뷰형 · 파란 마커</div>
+    <div class="links" id="links-interview"></div>
+
+    <footer>
+      <div class="pen">"호갱만 되지 마세요"</div>
+      폰키호테 방학점 × 마케팅팀<br>수정 내용은 이 기기 브라우저에만 저장됩니다.
+    </footer>
+  </div>
+
+  <!-- ============ 대본 ============ -->
+  <div id="view-script" class="hidden">
+    <div class="topbar">
+      <button class="backbtn" onclick="goHome()">← 목록</button>
+      <span class="savestate" id="savestate">자동 저장</span>
+    </div>
+    <div class="script-head" id="script-head"></div>
+    <div class="tone" id="script-tone"></div>
+    <div id="blocks"></div>
+    <button class="addblock" onclick="addBlock()">＋ 질문·답변 블록 추가</button>
+    <div class="actions">
+      <button class="btn primary" onclick="copyScript()">전체 복사</button>
+      <button class="btn" onclick="resetScript()">원본으로 되돌리기</button>
+    </div>
+    <footer>수정하면 자동 저장됩니다 · 폰키호테 방학점</footer>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ====== 원본 대본 데이터 ====== */
+const ORIGINAL = [
+{
+ id:"a1", type:"lecture", color:"red", ep:"강의 1",
+ title:"이 견적서, 어디서부터 잘못됐을까요?",
+ dur:"목표 7~8분 · 보드에 실제 견적서 부착",
+ tone:"<b>톤:</b> 파는 사람이 아니라 가르치는 사람. 매장 자랑은 마지막 CTA에서 딱 한 번. 사장님의 손님 경험담이 들어갈수록 강의가 강의 같지 않아집니다.",
+ blocks:[
+  {label:"훅 · 0:00~0:15", q:"오프닝 멘트 (견적서 들고)",
+   a:"구독자분이 다른 매장에서 받아온 견적서입니다. 이대로 샀으면 2년 동안 ○○만 원 더 내실 뻔했어요. 어디서 새는지 지금부터 펜으로 다 표시해 드릴게요.",
+   g:"손해 금액은 실제 견적 보고 사장님이 직접 산출해서 넣기. 숫자가 구체적일수록 훅이 셉니다."},
+  {label:"공감 · ~1:00", q:"왜 견적서가 어려운가",
+   a:"견적서 받아보면 무슨 말인지 모르겠죠? 일부러 어렵게 만든 게 맞습니다. 모를수록 좋은 쪽이 있거든요. 딱 네 군데만 볼 줄 알면 어디서도 호갱 안 됩니다.",
+   g:"시청자 탓이 아니라 '구조 탓'이라고 안심시키는 게 포인트. 비난 대상은 특정 매장이 아니라 업계 관행으로."},
+  {label:"항목 ① 출고가", q:"출고가 설명",
+   a:"출고가 ○○원. 이건 그냥 정가예요. 협상 시작점이라 여기에 속을 건 없습니다. 문제는 그다음부터예요.",
+   g:"짧게 치고 넘어가는 구간. 길어지면 본론(할부원금) 도착 전에 이탈합니다."},
+  {label:"항목 ② 할부원금 ★핵심", q:"할부원금이 빠진 견적서의 문제",
+   a:"할부원금은 '내가 실제로 사는 폰의 가격'입니다. 이게 안 적힌 견적서는 가격표 없는 메뉴판이에요. 그 자리에서 물어보세요. \"할부원금이 정확히 얼마예요?\" 못 알려주면 일어나서 나오시면 됩니다.",
+   g:"영상 전체의 주인공 문장. '호갱 방지 질문 1호'라는 이름을 붙여 자막으로도 박아주세요. 현장에서 겪은 사례 하나 곁들이면 최고."},
+  {label:"항목 ③ 월납부액 함정", q:"\"월 ○만원이면 돼요\"의 정체",
+   a:"폰값이랑 요금제를 섞어서 말하는 겁니다. 요금제는 어딜 가도 내는 돈이에요. 폰값만 분리해야 매장 간 비교가 됩니다. 월 납부액으로 말하는 순간 비교가 불가능해지고, 그게 노림수예요.",
+   g:"실제로 들어본 멘트를 따옴표 그대로 흉내 내면 재미와 공감이 동시에 잡힙니다."},
+  {label:"항목 ④ 부가서비스", q:"슬쩍 들어간 부가서비스",
+   a:"부가서비스 ○개, 합치면 월 ○○원, 2년이면 ○○만 원. \"한 달 뒤 해지하세요\" 하는데 절반은 잊어버립니다. 그걸 알고 넣는 거예요. 모르는 항목은 \"이거 빼면 조건 달라져요?\" 하고 물어보세요.",
+   g:"곱셈을 보드에 직접 적으면서 진행. '잊어버리는 걸 노린다'는 메커니즘 폭로가 핵심."},
+  {label:"마무리 + CTA", q:"정리 멘트",
+   a:"비교는 월 납부액이 아니라 할부원금으로. 모르는 항목은 빼달라고. 이 두 가지면 끝입니다. 저희 폰키호테는 할부원금을 맨 윗줄에 적어 드려요. 견적서 헷갈리면 사진 찍어 보내주세요, 다음 영상에서 같이 해부해 드립니다.",
+   g:"매장 언급은 여기가 처음이자 마지막. '견적서 제보' CTA가 다음 화 소재를 만들어주는 순환 장치입니다."}
+ ]
+},
+{
+ id:"a2", type:"lecture", color:"red", ep:"강의 2",
+ title:"폰글리시 1강 — 할부원금, 5분 끝내기",
+ dur:"목표 5분 · 보드엔 뺄셈 한 줄만 크게",
+ tone:"<b>톤:</b> 일타강사. 이 영상의 목표는 단어 하나 가르치기 — 내용을 더 넣으면 오히려 약해집니다. 비유는 사장님이 평소 손님께 쓰시던 걸로.",
+ blocks:[
+  {label:"훅 · 0:00~0:12", q:"내부자 고백형 오프닝",
+   a:"폰 가게 사장인 제가 솔직히 말씀드릴게요. 손님이 이 단어를 모르고 오시면… 비싸게 팔 수 있습니다. 저는 안 그러는데, 그러는 데가 많아요. 오늘 5분이면 평생 면역 생깁니다.",
+   g:"'파는 사람의 고백'이라는 구도가 훅의 전부. 워딩은 사장님 입에 붙게 바꾸시되 이 구도는 유지."},
+  {label:"개념 · 보드 수식", q:"할부원금이란? (사장님의 비유로)",
+   a:"출고가 ○○원에서 지원금 ○○원을 빼면 = 할부원금 ○○원. 이게 내가 이 폰을 실제로 사는 가격입니다. 끝이에요.",
+   g:"비유 한 개를 꼭 넣어주세요 — 마트 1+1이든 중고차든, 평소 손님 설명할 때 쓰시는 그 비유가 제일 자연스럽습니다."},
+  {label:"왜 숨기나", q:"왜 아무도 안 알려줄까",
+   a:"출고가는 어딜 가나 같아요. 요금제도 같아요. 매장마다 다른 건 지원금 하나고, 그래서 할부원금이 달라집니다. 이걸 가리는 마법의 문장이 \"고객님 월 ○만원이면 돼요\"예요.",
+   g:"'어디나 같은 것 vs 매장마다 다른 것'의 대비가 논리의 뼈대. 실제 들어본 뭉개기 멘트가 있으면 추가."},
+  {label:"실전 사용법", q:"매장에서 쓰는 한 문장",
+   a:"매장 들어가서 딱 한 문장. \"이 기종 할부원금이 얼마예요?\" 이 질문 하나로 직원은 '아는 분'으로 분류합니다. 그 순간부터 견적이 달라져요. 두 군데만 물어보면 동네 시세가 나옵니다.",
+   g:"'직원이 아는 분으로 분류한다'는 내부자 디테일이 신뢰 포인트. 실제 그런지 사장님 경험으로 보강해주세요."},
+  {label:"숙제 + 다음 화 예고", q:"마무리 CTA",
+   a:"이번 주에 매장 지나가시면 살 거 아니어도 물어보세요. \"○○ 할부원금 얼마예요?\" 답을 댓글로 적어주시면 지역별 시세를 다음 영상에서 정리해 드립니다. 2강은 공시지원금 vs 선택약정입니다.",
+   g:"댓글 숙제 = 참여 + 다음 화 소재. 시리즈명(폰글리시)을 말로도 한 번 박아주세요."}
+ ]
+},
+{
+ id:"a3", type:"lecture", color:"red", ep:"강의 3",
+ title:"자급제 vs 우리 매장, 계산해서 진 쪽이 인정합니다",
+ dur:"목표 9~10분 · 보드 좌우 양분, 총액 칸은 비워두고 시작",
+ tone:"<b>톤:</b> 심판 겸 선수. 자급제의 장점을 진심으로 인정해야 광고가 아니라 검증이 됩니다. 숫자는 전부 촬영일 실제 시세로, 보드에 '촬영일 기준 예시' 명기.",
+ blocks:[
+  {label:"훅 · 0:00~0:20", q:"오프닝 선언",
+   a:"\"자급제에 알뜰폰이 무조건 제일 싸다\" — 이 말 많이 들으셨죠. 저는 폰 파는 사람이라 제 말은 못 믿으실 테니, 오늘은 말 안 하고 계산만 합니다. 24개월 총비용. 지면 지는 겁니다.",
+   g:"'제 말 믿지 마세요' 구도가 훅. 자신감 있되 거만하지 않게."},
+  {label:"룰 선언", q:"공정한 비교 조건",
+   a:"같은 기종, 24개월, 같은 데이터 사용량. 자급제 쪽은 카드할인까지 최저 루트로 다 챙겨드립니다. 숫자는 오늘 기준이고, 댓글로 기종 주시면 그걸로 다시 계산해 드려요.",
+   g:"공정성 어필이 이 영상의 생명. 자급제 쪽 조건을 후하게 잡을수록 결과의 신뢰도가 올라갑니다."},
+  {label:"자급제 진영 (파란펜)", q:"자급제+알뜰폰 24개월 총액 계산",
+   a:"일시불 ○○원, 카드할인 -○○원, 알뜰 요금제 ○○원×24개월 = 총 ○○원. 솔직히 좋은 루트 맞아요. 약정 없고 위약금 없고. 단, 개통도 셀프, 문제 생겨도 셀프, 그리고 목돈이 한 번에 나갑니다.",
+   g:"★자급제 장점을 진심으로 인정하는 구간. 이 인정이 빠지면 영상 전체가 광고로 보입니다."},
+  {label:"매장 진영 (빨간펜)", q:"폰키호테 조건 24개월 총액 계산",
+   a:"할부원금 ○○원. 조건 있습니다, 솔직하게 적을게요 — ○○원 요금제 ○개월 유지, 이후 내리시면 됩니다. 전부 더하면 총 ○○원.",
+   g:"조건(요금제 유지 등)을 숨기지 말고 먼저 적는 게 차별화. 성지 경험자 불만 1위가 '조건에 데임'이라, 조건 공개 자체가 메시지입니다."},
+  {label:"결과 + 반전", q:"승부 결과와 진짜 결론",
+   a:"이 예시에선 저희가 ○○만 원 쌉니다. 근데 항상 그런 건 아니에요. 지원금이 적은 기종, 일부 아이폰은 자급제가 이깁니다. 결론은 '어디가 무조건 싸다'가 아니라, 이 계산법을 가져가시라는 겁니다.",
+   g:"자급제가 이기는 실제 케이스를 사장님이 한 개 꼭 제시해주세요. 이 반전이 영상의 공정성을 완성합니다."},
+  {label:"CTA", q:"마무리",
+   a:"댓글에 '기종 + 월 데이터 사용량' 적어주시면 다음 영상에서 보드에 놓고 계산해 드립니다. 방학동 근처시면 계산서 들고 오세요. 저희가 못 이기는 조건이면 자급제로 사시라고 말씀드릴게요. 진짜로요.",
+   g:"\"자급제로 사시라고 말해드린다\"가 채널 전체의 포지션 선언. 이 문장은 꼭 살려주세요."}
+ ]
+},
+{
+ id:"b1", type:"interview", color:"blue", ep:"인터뷰 1",
+ title:"사장님, 솔직히 성지 사기 아니에요?",
+ dur:"본편 4~5분 · 숏츠 3개 추출 · 질문자는 화면 밖",
+ tone:"<b>톤:</b> 답을 외우지 마세요. 질문 순서만 보시고 답은 현장에서 — 머뭇거림과 웃음이 진정성입니다. 핵심은 하나, <b>부정하지 말고 인정부터</b>. 변명 톤이 나오는 순간 영상이 죽습니다.",
+ blocks:[
+  {label:"콜드오픈 ※숏츠", q:"솔직히… 성지, 사기 아니에요?",
+   a:"(2초 정적 후) 와, 첫 질문부터 이러기예요? …맞아요. 사기 같은 데, 실제로 있어요. 그래서 그 질문이 나오는 거고요.",
+   g:"정적 2초가 숏츠 훅. 답의 방향은 '인정'. 사장님도 이 일 하기 전엔 똑같이 의심했다는 얘기로 이어지면 자연스럽습니다."},
+  {label:"가격 차이의 원리", q:"그럼 그 가격 차이는 어디서 나는 건데요?",
+   a:"매장이 받는 판매 수수료의 일부를 손님께 얼마나 돌려드리느냐의 차이예요. 마법이 아니라 배분의 문제입니다.",
+   g:"정확한 숫자는 안 까도 됩니다. '마법이 아니라 배분' 프레임만 지키고, 구조 설명은 사장님 언어로."},
+  {label:"위험 매장 구별법 ※숏츠", q:"진짜 '사기 같은 곳'은 뭐가 다른데요?",
+   a:"세 가지만 보세요. 할부원금을 끝까지 안 알려준다, 조건을 말로만 하고 안 적어준다, 오늘 아니면 안 된다고 재촉한다. 하나라도 걸리면 나오시면 돼요.",
+   g:"이 답이 영상의 실용 가치. 사장님이 실제로 보는 위험 신호로 교체·추가해주세요. 개수는 3개가 기억하기 좋습니다."},
+  {label:"개인 서사", q:"근데 왜 굳이 이 동네에서 이렇게 장사하세요?",
+   a:"방학동이 제 동네거든요. 사기 치면 마트에서 마주쳐요. (웃음) 동네 장사는 한 분께 잘못하면 열 분이 알게 돼 있어요.",
+   g:"사장님의 진짜 이야기로 전부 교체 가능한 칸. 동네·단골 얘기가 나오면 그게 정답입니다."},
+  {label:"마무리 ※숏츠", q:"아직도 '사기 같은데' 하는 분들께 한마디?",
+   a:"안 믿으셔도 돼요. 대신 견적서만 받아 가세요. 비교해 보고 결정하시면 됩니다. 저희는 비교당하는 거 환영합니다.",
+   g:"설득이 아니라 '검증 초대'로 끝나야 불신층에게 먹힙니다. 이 구도만 유지하면 워딩은 자유."}
+ ]
+},
+{
+ id:"b2", type:"interview", color:"blue", ep:"인터뷰 2",
+ title:"이 폰 팔면 사장님은 얼마 남아요?",
+ dur:"본편 4분 · 숏츠 2개 추출",
+ tone:"<b>톤:</b> 금기 깨기. 정확한 금액은 공개 안 해도 됩니다 — '박리다매 vs 한 명에게 두껍게'라는 구조만 전달되면 성공. 당황 리액션은 자르지 말고 살리세요.",
+ blocks:[
+  {label:"콜드오픈 ※숏츠", q:"이거 한 대 팔면 얼마 남아요?",
+   a:"…그걸 물어본다고요? 카메라 앞에서? (한숨, 웃음) 좋아요. 업계에서 욕먹을 수도 있는데, 갑니다.",
+   g:"리얼 당황이 최고의 컷. 이 질문은 사전에 안 알려주고 찍는 것도 방법입니다."},
+  {label:"수익 구조", q:"매장은 뭘로 돈을 버는 거예요?",
+   a:"통신사에서 판매 수수료를 받아요. 여기서 임대료 내고 월급 주고, 손님께 지원금으로 얼마를 돌려드릴지 정하는 거죠. 많이 팔아서 박하게 남기느냐, 적게 팔아서 두껍게 남기느냐 — 저희는 전자입니다.",
+   g:"공개 수위는 사장님이 결정. 비유(한 분께 40만 원 vs 다섯 분께 8만 원씩)가 이해를 돕습니다."},
+  {label:"추가 찌르기 ※숏츠", q:"그럼 부가서비스나 비싼 요금제 권하는 건 왜 그래요?",
+   a:"그것도 수수료가 붙으니까요. 솔직하게 말씀드리는 거예요. 그래서 저희 원칙은 — 권할 순 있는데 빼달라면 그냥 뺀다. 빼서 조건이 달라지면, 달라지는 금액을 숫자로 보여드리고 손님이 고르시게 합니다.",
+   g:"'수수료 붙으니까요' 인정이 먼저, 원칙이 나중. 순서가 바뀌면 변명처럼 들립니다. 원칙은 실제 운영 방식으로 교체."},
+  {label:"손해 아니냐", q:"마진 공개하면 손해 아니에요?",
+   a:"단기로는요. 근데 '쟤는 숨기는 게 없네'라는 평판이 생기면 그게 제일 싼 광고예요. 지금 이 영상도 광곤데, 출연료가 제 마진 공개네요. (웃음)",
+   g:"자조 섞인 유머로 마무리되면 베스트. 사장님 스타일의 농담으로 교체 가능."},
+  {label:"마무리", q:"손님이 기억할 건 한 가지만 꼽으면?",
+   a:"매장이 남기는 건 정상입니다. 다만 얼마를 어떻게 남기는지 투명한 매장을 고르세요. 조건을 종이로 적어주는 곳, 빼달라면 빼주는 곳. 그 두 개면 충분합니다.",
+   g:"소비자 행동 지침으로 끝나야 '정보 영상'으로 기억됩니다."}
+ ]
+},
+{
+ id:"b3", type:"interview", color:"blue", ep:"인터뷰 3",
+ title:"어떤 손님은 그냥 돌려보내요?",
+ dur:"본편 3~4분 · 숏츠 2개 추출",
+ tone:"<b>톤:</b> 이 영상은 일화가 전부입니다. 촬영 전에 사장님께 '돌려보냈거나 말렸던 손님 기억 2개'를 미리 여쭤보고, 그 이야기를 질문으로 끌어내는 구조로 가세요.",
+ blocks:[
+  {label:"콜드오픈 ※숏츠", q:"손님을 안 받고 돌려보낸 적 있어요?",
+   a:"있죠. 지난주에도요.",
+   g:"답은 짧을수록 좋습니다. '폰 가게가 손님을 돌려보낸다고요?'라는 되물음까지가 한 세트."},
+  {label:"사례 1", q:"(사장님의 실제 일화 ①을 끌어내는 질문으로 교체)",
+   a:"예시: 약정이 두 달 남은 어머님이 오셨는데, 지금 바꾸면 위약금이 할인보다 커요. \"두 달 뒤에 오세요\" 하고 달력에 적어드렸죠.",
+   g:"사전 인터뷰에서 들은 실화로 통째로 교체하는 칸. 디테일(달력에 적어드림 같은)이 살수록 좋습니다."},
+  {label:"찌르기 ※숏츠", q:"그냥 팔면 매출인데요?",
+   a:"그 매출 한 번 잡고 그분이 영영 안 오시는 것과, 두 달 뒤에 오셔서 10년 단골 되시는 것 — 계산이 안 되나요? (웃음)",
+   g:"단골 논리는 사장님의 동네 장사 철학으로 자유롭게."},
+  {label:"사례 2", q:"(실제 일화 ②: 바꿀 필요 없던 손님 등)",
+   a:"예시: 폰이 멀쩡한데 바꾸려는 분들께는 \"이 폰 아직 안 죽었어요, 배터리만 가세요\" 합니다. 안 사고 구경만 하다 가셔도 돼요. 진짜로.",
+   g:"'강매 안 하는 매장'이라는 안전 신호가 목적. 매장 들어오기 두려워하는 분들을 직접 언급해주면 더 좋습니다."},
+  {label:"마무리", q:"마지막 한마디?",
+   a:"폰 바꿀지 말지 모르겠으면 일단 들고 오세요. \"바꾸지 마세요\"라는 답을 드릴 수도 있는 매장입니다.",
+   g:"내방 문턱을 낮추는 문장으로 종료. 이 문장은 종료 자막으로도 재사용하세요."}
+ ]
+}
+];
+
+/* ====== 상태 관리 ====== */
+const KEY = "pkht_scripts_v1";
+let store = {};
+let memOnly = false;
+function loadStore(){
+  try{ const raw = localStorage.getItem(KEY); if(raw) store = JSON.parse(raw); }
+  catch(e){ memOnly = true; }
+}
+function saveStore(){
+  try{ localStorage.setItem(KEY, JSON.stringify(store)); }
+  catch(e){ memOnly = true; }
+  flashSave();
+}
+function getBlocks(id){
+  if(store[id]) return store[id];
+  const orig = ORIGINAL.find(s=>s.id===id);
+  return orig.blocks.map(b=>({...b}));
+}
+function isEdited(id){ return !!store[id]; }
+
+/* ====== 렌더 ====== */
+let currentId = null;
+const $ = s => document.querySelector(s);
+
+function renderHome(){
+  const lec = $("#links-lecture"), itv = $("#links-interview");
+  lec.innerHTML = ""; itv.innerHTML = "";
+  ORIGINAL.forEach(s=>{
+    const btn = document.createElement("button");
+    btn.className = "linkcard";
+    btn.onclick = ()=>openScript(s.id);
+    btn.innerHTML = `
+      <span class="stripe" style="background:var(--${s.color})"></span>
+      <span class="body">
+        <span class="ep" style="color:var(--${s.color})">${s.ep}</span>
+        <div class="t">${s.title}</div>
+        <div class="meta">${s.dur}${isEdited(s.id)?` · <span class="edited">✎ 수정함</span>`:""}</div>
+      </span>
+      <span class="arrow">→</span>`;
+    (s.type==="lecture"?lec:itv).appendChild(btn);
+  });
+}
+
+function openScript(id){
+  currentId = id;
+  const s = ORIGINAL.find(x=>x.id===id);
+  $("#view-home").classList.add("hidden");
+  $("#view-script").classList.remove("hidden");
+  $("#script-head").innerHTML = `
+    <div class="ep" style="color:var(--${s.color})">${s.ep}</div>
+    <h2>${s.title}</h2>
+    <div class="dur">${s.dur}</div>`;
+  $("#script-tone").innerHTML = s.tone;
+  renderBlocks();
+  window.scrollTo(0,0);
+  history.replaceState(null,"","#"+id);
+}
+
+function renderBlocks(){
+  const s = ORIGINAL.find(x=>x.id===currentId);
+  const blocks = getBlocks(currentId);
+  const box = $("#blocks"); box.innerHTML = "";
+  blocks.forEach((b,i)=>{
+    const el = document.createElement("div");
+    el.className = "block";
+    el.innerHTML = `
+      <span class="tag">${escapeHtml(b.label)}</span>
+      <button class="del-block" title="블록 삭제">삭제</button>
+      <div class="field-label" style="color:var(--${s.color})">${s.type==="interview"?"질문 (화면 밖)":"코너 / 말할 주제"} · 터치해서 수정</div>
+      <textarea class="q-input" rows="1" style="color:var(--${s.color})"></textarea>
+      <div class="field-label">샘플 답변 · 사장님 말투로 고쳐주세요</div>
+      <textarea class="a-input" placeholder="여기에 사장님 버전으로 적어주세요"></textarea>
+      ${b.g?`<div class="guide">${escapeHtml(b.g)}</div>`:""}`;
+    const q = el.querySelector(".q-input"), a = el.querySelector(".a-input");
+    q.value = b.q; a.value = b.a;
+    const sync = ()=>{
+      const cur = getBlocks(currentId);
+      cur[i].q = q.value; cur[i].a = a.value;
+      store[currentId] = cur; saveStore();
+      autosize(q); autosize(a);
+    };
+    q.addEventListener("input", sync);
+    a.addEventListener("input", sync);
+    el.querySelector(".del-block").onclick = ()=>{
+      if(!confirm("이 블록을 삭제할까요?")) return;
+      const cur = getBlocks(currentId); cur.splice(i,1);
+      store[currentId] = cur; saveStore(); renderBlocks();
+    };
+    box.appendChild(el);
+    autosize(q); autosize(a);
+  });
+}
+
+function escapeHtml(t){
+  return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function autosize(t){ t.style.height="auto"; t.style.height = t.scrollHeight + "px"; }
+
+function addBlock(){
+  const s = ORIGINAL.find(x=>x.id===currentId);
+  const cur = getBlocks(currentId);
+  cur.push({label:"추가 블록", q:s.type==="interview"?"새 질문을 적어주세요":"새 코너 제목을 적어주세요", a:"", g:""});
+  store[currentId] = cur; saveStore(); renderBlocks();
+  window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"});
+}
+
+function resetScript(){
+  if(!confirm("수정한 내용을 모두 지우고 원본 대본으로 되돌릴까요?")) return;
+  delete store[currentId]; saveStore(); renderBlocks(); toast("원본으로 되돌렸습니다");
+}
+
+function copyScript(){
+  const s = ORIGINAL.find(x=>x.id===currentId);
+  const blocks = getBlocks(currentId);
+  let txt = `[${s.ep}] ${s.title}\n${s.dur}\n\n`;
+  blocks.forEach(b=>{ txt += `■ ${b.label}\n${s.type==="interview"?"Q. ":"▷ "}${b.q}\nA. ${b.a}\n\n`; });
+  txt += "— 폰키호테 방학점 촬영 대본";
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt)
+      .then(()=>toast("대본이 복사됐습니다. 카톡에 붙여넣으세요!"))
+      .catch(()=>fallbackCopy(txt));
+  } else fallbackCopy(txt);
+}
+function fallbackCopy(txt){
+  const ta = document.createElement("textarea");
+  ta.value = txt; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); toast("대본이 복사됐습니다"); }
+  catch(e){ toast("복사가 지원되지 않는 환경입니다"); }
+  document.body.removeChild(ta);
+}
+
+function goHome(){
+  currentId = null;
+  $("#view-script").classList.add("hidden");
+  $("#view-home").classList.remove("hidden");
+  renderHome();
+  history.replaceState(null,"","#");
+  window.scrollTo(0,0);
+}
+
+let toastTimer;
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+let saveTimer;
+function flashSave(){
+  const el = $("#savestate");
+  el.textContent = memOnly ? "임시 저장(이 화면에서만 유지)" : "✓ 자동 저장됨";
+  el.classList.add("on");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{ el.textContent="자동 저장"; el.classList.remove("on"); }, 1800);
+}
+
+/* ====== 시작 ====== */
+loadStore();
+renderHome();
+const initHash = location.hash.replace("#","");
+if(initHash && ORIGINAL.some(s=>s.id===initHash)) openScript(initHash);
+</script>
+</body>
+</html>
