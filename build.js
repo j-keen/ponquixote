@@ -69,7 +69,14 @@ const pages = sections
   }))
   .filter((p) => p.group !== '화이트보드 기획')   // 화이트보드 프롬프트 제외 — 대본만
   .map((p, i) => ({ id: 'p' + i, ...p }));
-const homeMd = home.join('\n').trim();
+// 공유용 홈: 내부 작업메모(작업 노트/공통 주의)는 제외하고 깔끔한 인트로만
+const homeMd = [
+  '# 폰키호테 방학점 — 촬영 대본',
+  '',
+  '유튜브 콘텐츠 **6편** · 강의형 3 / 인터뷰형 3',
+  '',
+  '아래에서 보고 싶은 편을 누르세요.',
+].join('\n');
 
 const data = { home: homeMd, pages };
 const json = JSON.stringify(data).replace(/<\//g, '<\\/');
@@ -151,7 +158,7 @@ function renderHome(){
     });
     html += '</div>';
   });
-  html += '<div class="foot">자비스 생성 · 촬영 전 가격·지원금 숫자는 실제 시세로 교체</div>';
+  html += '<div class="foot">폰키호테 방학점 · 촬영용 대본</div>';
   view.innerHTML = html;
   document.title = '폰키호테 방학점 — 콘텐츠 제작 패키지';
   window.scrollTo(0,0);
